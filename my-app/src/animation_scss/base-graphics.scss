@@ -1,0 +1,40 @@
+.element {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: 50% 50%;
+  }
+  
+  .meteorBlue {
+    svg {
+      filter: drop-shadow(0 0 10px rgba(198, 165, 45, 0.65));
+      width: 7em;
+      height: 7em;
+    }
+    opacity: 0;
+    rotate: -55deg;
+  }
+  
+  .meteorPurple {
+    svg {
+      filter: drop-shadow(0 0 10px rgba(101, 46, 169 , 0.65));
+      width: 8em;
+      height: 8em;
+    }
+    opacity: 0;
+    rotate: -55deg;
+  }
+  
+  .star-size-1 {
+    svg {
+      width: 5.6em;
+      height: 5.6em;
+    }
+  }
+  
