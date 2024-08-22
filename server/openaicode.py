@@ -1,5 +1,7 @@
 import openai
 import pdfreader
+
+
 system_content = """Your a resume inspector, Please identify and extract the key sections of this resume (such as Objective, Education, Skills, Experience, and Projects). For each section, use clear and concise bullet points to list the most important details. Keep the focus on quantifiable achievements, technologies used, and the role-specific tasks performed. Present the information in a structured and easy-to-read format. For example:
 
 [Section Name]

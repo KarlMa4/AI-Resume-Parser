@@ -3,7 +3,7 @@ import { Flex } from "@chakra-ui/react";
 import BackgroundBox from "./BackgroundBox";
 import "./index.css";
 import { SvgBackground } from "./graphic_components/BG";
-import Button from "./button";
+import FileUpload from "./FileUpload";
 
 function App() {
   return (
@@ -28,11 +28,11 @@ function ExampleAppScreen() {
   return (
     <Flex
       className="example-screen"
-      zIndex="1"
+      zIndex="2"
       alignSelf="center"
       justifySelf="center"
       w="50vw"
-      maxW="20em"
+      maxW="25em"
       h="70vh"
       maxH="35em"
       bg="white"
@@ -40,9 +40,11 @@ function ExampleAppScreen() {
       justifyContent="center"
       flexDirection="column"
       alignItems="center"
+      minW="25em" // Minimum width constraint
+      minH="35em" // Minimum height constraint
     >
       <h1>Upload resume!</h1>
-      <Button />
+      <FileUpload></FileUpload>
     </Flex>
   );
 }

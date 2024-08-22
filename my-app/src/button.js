@@ -1,10 +1,9 @@
-import React from "react";
 import styled from "styled-components";
 
-const Button = () => {
+const Button = ({ onClick, children }) => {
   return (
     <StyledWrapper>
-      <button>
+      <button onClick={onClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 36 36"
@@ -46,7 +45,7 @@ const Button = () => {
           />
         </svg>
         <span className="now">now!</span>
-        <span className="play">play</span>
+        <span className="play">Submit</span>
       </button>
     </StyledWrapper>
   );
