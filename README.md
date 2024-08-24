@@ -20,3 +20,11 @@
   - Created the upload pdf apperance Utilized background animation code from [File Button](https://uiverse.io/simontheonlyone/happy-baboon-60) and Input Icon from [Upload code](https://uiverse.io/Yaya12085/yellow-goat-62)
 - **Backend Development**
   - Create upload resume pdf functionality
+
+### 8/24/2024
+
+- **Frontend Development**
+  - Created the second screen blocks for parse text
+  - received json text from backend
+- **Backend Development**
+  - sending json parse text to the frontend
