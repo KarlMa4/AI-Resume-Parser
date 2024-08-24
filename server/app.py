@@ -1,7 +1,8 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import os
-
+from openaicode import Resume_Parser
+import asyncio
 app = Flask(__name__)
 
 CORS(app, origins=['http://localhost:3000'])
@@ -31,7 +32,10 @@ def upload_pdf():
     if file and file.filename.endswith('.pdf'):
         file_path = os.path.join(UPLOAD_FOLDER, file.filename)
         file.save(file_path)
-        return jsonify({"message": f"File {file.filename} uploaded successfully!", "file_path": file_path})
+
+        # Trigger Resume_Parser asynchronously
+        parsed_text = Resume_Parser()
+        return jsonify({"message": "File uploaded and parsed successfully!", "parsed_text": parsed_text}), 200
 
     return jsonify({"error": "Invalid file type"}), 400
 

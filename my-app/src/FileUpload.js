@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "./button";
 import Form from "./Form";
-const FileUpload = () => {
+const FileUpload = ({ onParsingComplete }) => {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const [fileName, setFileName] = useState("");
@@ -11,13 +11,13 @@ const FileUpload = () => {
     const file = event.target.files[0];
     if (file) {
       setFileName(file.name); // Update fileName with the selected file's name
+      setSelectedFile(event.target.files[0]);
     }
-
-    setSelectedFile(event.target.files[0]);
   };
 
   // Handle button click to upload the file
   const handleClick = async () => {
+    console.log("Button clicked");
     if (!selectedFile) {
       console.error("No file selected");
       return;
@@ -34,6 +34,7 @@ const FileUpload = () => {
 
       const data = await response.json();
       console.log("Response from backend:", data);
+      onParsingComplete(data.parsed_text);
     } catch (error) {
       console.error("Error:", error);
     }

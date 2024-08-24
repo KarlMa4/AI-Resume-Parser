@@ -4,27 +4,39 @@ import BackgroundBox from "./BackgroundBox";
 import "./index.css";
 import { SvgBackground } from "./graphic_components/BG";
 import FileUpload from "./FileUpload";
-
+import React, { useState } from "react";
 function App() {
+  const [parsedText, setParsedText] = useState(""); // State to hold parsed text
+  const [isParsed, setIsParsed] = useState(false); // State to check if parsed text exists
+
+  // Function to handle parsing completion and update state
+  const handleParsingComplete = (parsedText) => {
+    setParsedText(parsedText);
+    setIsParsed(true);
+  };
   return (
     <Flex
       position="relative"
       w="100%"
       h="100%"
       bg="black"
-      direction="column"
+      direction="row"
       alignItems="center"
       justifyContent="center"
     >
       <SvgBackground />
       <BackgroundBox />
-      <ExampleAppScreen />
+      {/* Left Side: Original ExampleAppScreen */}
+      <ExampleAppScreen onParsingComplete={handleParsingComplete} />
+
+      {/* Right Side: Conditionally Render New Screen for Parsed Text */}
+      {isParsed && <ParsedTextScreen parsedText={parsedText} />}
     </Flex>
   );
 }
 
 export default App;
-function ExampleAppScreen() {
+function ExampleAppScreen({ parsedText, isParsed, onParsingComplete }) {
   return (
     <Flex
       className="example-screen"
@@ -44,7 +56,35 @@ function ExampleAppScreen() {
       minH="35em" // Minimum height constraint
     >
       <h1>Upload resume!</h1>
-      <FileUpload></FileUpload>
+      <FileUpload onParsingComplete={onParsingComplete} />
+    </Flex>
+  );
+}
+function ParsedTextScreen({ parsedText }) {
+  return (
+    <Flex
+      className="parsed-text-screen"
+      zIndex="2"
+      alignSelf="center"
+      justifySelf="center"
+      w="auto"
+      h="auto"
+      maxW="90vw" // Max width constraint to ensure it fits within the screen
+      maxH="90vh" // Max height constraint to ensure it fits within the screen
+      bg="white"
+      borderRadius="1em"
+      justifyContent="flex-start"
+      flexDirection="column"
+      alignItems="flex-start"
+      overflow="auto" // Allow scrolling if content exceeds height
+      padding="1em" // Add padding for better readability
+      ml="2em" // Margin to separate from the original screen
+    >
+      <h1>Parsed Resume</h1>
+      <pre style={{ whiteSpace: "pre-wrap", wordWrap: "break-word" }}>
+        {parsedText}
+      </pre>{" "}
+      {/* Display parsed text with proper wrapping */}
     </Flex>
   );
 }
