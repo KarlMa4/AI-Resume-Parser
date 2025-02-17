@@ -28,3 +28,8 @@
   - received json text from backend
 - **Backend Development**
   - sending json parse text to the frontend
+
+### 2/17/2025
+
+- **Frontend Development**
+  - Created running circle animation when loading parser
