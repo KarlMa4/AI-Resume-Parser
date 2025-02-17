@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Button from "./button";
 import Form from "./Form";
+import Spinner from "./Spinner";
 const FileUpload = ({ onParsingComplete }) => {
   const [selectedFile, setSelectedFile] = useState(null);
-
   const [fileName, setFileName] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // State to track loading
 
   // Handle file selection
   const handleFileChange = (event) => {
@@ -23,6 +24,7 @@ const FileUpload = ({ onParsingComplete }) => {
       return;
     }
 
+    setIsLoading(true); // Start loading
     const formData = new FormData();
     formData.append("pdf", selectedFile);
 
@@ -37,6 +39,8 @@ const FileUpload = ({ onParsingComplete }) => {
       onParsingComplete(data.parsed_text);
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      setIsLoading(false); // Stop loading once the operation is complete
     }
   };
 
@@ -52,8 +56,12 @@ const FileUpload = ({ onParsingComplete }) => {
       }}
     >
       <Form onChange={handleFileChange} fileName={fileName}></Form>
-      <br></br>
-      <Button onClick={handleClick}></Button>
+      <br />
+      {isLoading ? (
+        <Spinner /> // Show spinner when loading
+      ) : (
+        <Button onClick={handleClick}>Upload File</Button>
+      )}
     </div>
   );
 };

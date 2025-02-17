@@ -71,7 +71,6 @@ Ensure that each section appears in the specified order with consistent formatti
             temperature=0.7,
             max_tokens=1000,
         )
-
         response = chat_completion.choices[0].message.content
         return response
     except openai.error.OpenAIError as e:
